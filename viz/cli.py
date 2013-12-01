@@ -1,9 +1,10 @@
 import sys
 import argparse
 from viz.histogram import hist
+from viz.stats import total
 from viz.text import float_reader
 
-types = dict(hist=hist)
+types = dict(hist=hist, total=total)
 
 
 def main():

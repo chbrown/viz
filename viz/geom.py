@@ -12,10 +12,17 @@ def format_number_line(cells, left, right, margin=0):
 
 
 def hist(xs, range=None, margin=10, width=None):
-    '''Usage:
-    import scipy.stats
-    draws = scipy.stats.norm.rvs(size=100, loc=100, scale=10)
-    hist(draws, margin=5)
+    '''
+    xs: array of numbers, preferably an np.array, can contain nans, infinities
+    range: (minimum, maximum) tuple of numbers (defaults to (min, max) of xs)
+    margin: number of characters to use for the min-max labels (default: 10)
+    width: number of characters that will fit in a row (defaults to your terminal width)
+
+    Example:
+
+    >>> import scipy.stats
+    >>> draws = scipy.stats.norm.rvs(size=100, loc=100, scale=10)
+    >>> hist(draws, margin=5)
     '''
     if width is None:
         width = terminal.width()

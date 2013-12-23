@@ -74,6 +74,13 @@ The top line is the maximum, the bottom is the minimum. The other values are sca
 * `numpy`
 
 
+## Related projects (mostly graphical visualizations for Python)
+
+* [Matplotlib](http://matplotlib.org/api/pyplot_api.html): feels archaic to the touch. The pyplot fans have never run `import this`, the interface is unguessable and murkily documented.
+* [Bokeh](http://bokeh.pydata.org/quickstart.html): haven't used yet
+* [Vispy](http://vispy.org/): haven't used yet
+
+
 ## License
 
 Copyright (c) 2013 Christopher Brown. [MIT Licensed](https://raw.github.com/chbrown/viz/master/LICENSE).

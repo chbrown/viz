@@ -12,3 +12,9 @@ def normalize(xs):
     '''
     x_min, x_max = np.min(xs), np.max(xs)
     return (xs - x_min) / (x_max - x_min)
+
+
+def quantiles(xs, qs=None, step=25):
+    if qs is None:
+        qs = range(0, 100 + step, step)
+    return zip(qs, np.percentile(xs, qs))

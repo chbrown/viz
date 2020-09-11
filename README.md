@@ -83,4 +83,4 @@ The top line is the maximum, the bottom is the minimum. The other values are sca
 
 ## License
 
-Copyright (c) 2013 Christopher Brown. [MIT Licensed](https://raw.github.com/chbrown/viz/master/LICENSE).
+Copyright (c) 2013 Christopher Brown. [MIT Licensed](https://chbrown.github.io/licenses/MIT/#2013).

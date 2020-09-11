@@ -9,8 +9,9 @@ setup(
     url='https://github.com/chbrown/viz',
     keywords='console terminal data visualization plot histogram',
     description='Data visualization in the terminal',
-    long_description=open('README.rst').read(),
-    license=open('LICENSE').read(),
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
+    license='MIT',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: MIT License',

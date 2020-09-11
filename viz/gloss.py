@@ -1,4 +1,4 @@
-from viz import terminal
+from . import terminal
 
 
 def gloss(alignments, prefixes=None, postfixes=None, width=None, toksep=' ', linesep='\n', groupsep='\n'):

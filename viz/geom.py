@@ -1,7 +1,8 @@
-from viz import terminal
-from viz.text import format_float
-from viz.stats import normalize
 import numpy as np
+
+from . import terminal
+from .stats import normalize
+from .text import format_float
 
 
 def format_number_line(cells, left, right, margin=0):

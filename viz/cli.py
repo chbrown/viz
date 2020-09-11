@@ -1,8 +1,9 @@
-import sys
 import argparse
-from viz.geom import hist, points
-from viz.stats import total
-from viz.text import float_reader
+import sys
+
+from .geom import hist, points
+from .stats import total
+from .text import float_reader
 
 types = dict(hist=hist, points=points, total=total)
 

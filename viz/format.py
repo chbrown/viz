@@ -1,5 +1,6 @@
-from viz import terminal, stats
-from viz.text import format_float
+from . import stats
+from . import terminal
+from .text import format_float
 
 
 def quantiles(xs, qs=None, step=25, width=None, cellspacing=3):

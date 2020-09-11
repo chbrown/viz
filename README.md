@@ -7,15 +7,9 @@ Data visualization in the terminal.
 
 **From PyPI:**
 
-    easy_install viz
+    pip install viz
 
-**From source:**
-
-    git clone https://github.com/chbrown/viz.git
-    cd viz
-    python setup.py install
-
-The CLI entry point is `viz`, which should be installed on your `PATH`.
+The CLI entry point is `viz`.
 
 
 ## Commands

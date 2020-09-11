@@ -2,7 +2,7 @@ import numpy as np
 
 
 def total(xs):
-    print sum(xs)
+    print(sum(xs))
 
 
 def normalize(xs):
@@ -17,4 +17,4 @@ def normalize(xs):
 def quantiles(xs, qs=None, step=25):
     if qs is None:
         qs = range(0, 100 + step, step)
-    return zip(qs, np.percentile(xs, qs))
+    return list(zip(qs, np.percentile(xs, qs)))

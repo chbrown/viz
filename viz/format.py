@@ -22,4 +22,4 @@ def quantiles(xs, qs=None, step=25, width=None, cellspacing=3):
 
     cells = ['%2d%% < %s' % (q, format_float(value, cell_width - 6)) for q, value in qs_values]
 
-    print (' '*cellspacing).join(cells)
+    print((' '*cellspacing).join(cells))

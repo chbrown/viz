@@ -7,7 +7,7 @@ import numpy as np
 def format_number_line(cells, left, right, margin=0):
     return '%s[%s]%s' % (
         format_float(left, margin).rjust(margin),
-        u''.join(cells),
+        ''.join(cells),
         format_float(right, margin).ljust(margin))
 
 
@@ -43,18 +43,18 @@ def hist(xs, range=None, margin=10, width=None):
     hist_chars = (hist_heights * (len(terminal.bars) - 1)).astype(int)
     cells = [terminal.bars[hist_char] for hist_char in hist_chars]
 
-    print format_number_line(cells, bin_edges[0], bin_edges[-1], margin=margin)
+    print(format_number_line(cells, bin_edges[0], bin_edges[-1], margin=margin))
     if not finite.all():
         # if we took any out, report it:
         nonfinite_xs = xs[~finite]
         neginf = np.isneginf(nonfinite_xs)
         nan = np.isnan(nonfinite_xs)
         posinf = np.isposinf(nonfinite_xs)
-        print '%s %s %s' % (
+        print('%s %s %s' % (
             ('(%d) -inf' % np.count_nonzero(neginf) if neginf.any() else '').rjust(margin),
             ('(%d) nan' % np.count_nonzero(nan) if nan.any() else '').center(len(cells)),
             ('(%d) +inf' % np.count_nonzero(posinf) if posinf.any() else '').ljust(margin)
-        )
+        ))
 
 
 def points(ys, width=None):
@@ -88,6 +88,6 @@ def points(ys, width=None):
     bin_chars = (bin_heights * (len(terminal.bars) - 1)).astype(int)
     # print sums, counts, bin_means
     cells = [terminal.bars[bin_char] for bin_char in bin_chars]
-    print '[%+f]' % y_max
-    print u''.join(cells)
-    print '[%+f]' % y_min
+    print('[%+f]' % y_max)
+    print(''.join(cells))
+    print('[%+f]' % y_min)

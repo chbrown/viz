@@ -37,7 +37,7 @@ def gloss(alignments, prefixes=None, postfixes=None, width=None, toksep=' ', lin
     line_buffer_width = 0
 
     for aligned in alignments:
-        aligned = map(unicode, aligned)
+        aligned = list(map(str, aligned))
         length = max(map(len, aligned))
         line_buffer_width += toksep_len + length
         if line_buffer_width >= width:

@@ -5,15 +5,8 @@ from .stats import normalize
 from .text import format_float
 
 
-def format_number_line(cells, left, right, margin=0):
-    return '%s[%s]%s' % (
-        format_float(left, margin).rjust(margin),
-        ''.join(cells),
-        format_float(right, margin).ljust(margin))
-
-
 def hist(xs, range=None, margin=10, width=None):
-    '''
+    """
     xs: array of numbers, preferably an np.array, can contain nans, infinities
     range: (minimum, maximum) tuple of numbers (defaults to (min, max) of xs)
     margin: number of characters to use for the min-max labels (default: 10)
@@ -24,7 +17,7 @@ def hist(xs, range=None, margin=10, width=None):
     >>> import scipy.stats
     >>> draws = scipy.stats.norm.rvs(size=100, loc=100, scale=10)
     >>> hist(draws, margin=5)
-    '''
+    """
     if width is None:
         width = terminal.width()
 
@@ -37,29 +30,38 @@ def hist(xs, range=None, margin=10, width=None):
     # but if there are some nans / infinities, remove them
     finite_xs = xs[finite]  # if nonfinite.any() else xs
     # compute the histogram values as floats, which is easier, even though we renormalize anyway
-    hist_values, bin_edges = np.histogram(finite_xs, bins=n_bins, density=True, range=range)
-    # we want the highest hist_height to be 1.0
-    hist_heights = hist_values / max(hist_values)
+    values, bin_edges = np.histogram(finite_xs, bins=n_bins, density=True, range=range)
+    # we want the highest height to be 1.0
+    heights = values / max(values)
     # np.array(...).astype(int) will floor each value, if we wanted
-    hist_chars = (hist_heights * (len(terminal.bars) - 1)).astype(int)
+    hist_chars = (heights * (len(terminal.bars) - 1)).astype(int)
     cells = [terminal.bars[hist_char] for hist_char in hist_chars]
 
-    print(format_number_line(cells, bin_edges[0], bin_edges[-1], margin=margin))
+    print(
+        format_float(bin_edges[0], margin).rjust(margin),
+        "[" + "".join(cells) + "]",
+        format_float(bin_edges[-1], margin).ljust(margin),
+        sep="",
+    )
     if not finite.all():
         # if we took any out, report it:
         nonfinite_xs = xs[~finite]
-        neginf = np.isneginf(nonfinite_xs)
-        nan = np.isnan(nonfinite_xs)
-        posinf = np.isposinf(nonfinite_xs)
-        print('%s %s %s' % (
-            ('(%d) -inf' % np.count_nonzero(neginf) if neginf.any() else '').rjust(margin),
-            ('(%d) nan' % np.count_nonzero(nan) if nan.any() else '').center(len(cells)),
-            ('(%d) +inf' % np.count_nonzero(posinf) if posinf.any() else '').ljust(margin)
-        ))
+        preds = [np.isneginf, np.isnan, np.isposinf]
+        # names = ["-inf", "nan", "+inf"]
+        names = [
+            pred.__name__[len("is") :].replace("pos", "+").replace("neg", "-")
+            for pred in preds
+        ]
+        counts = [np.count_nonzero(pred(nonfinite_xs)) for pred in preds]
+        col1, col2, col3 = [
+            f"({count:d}) {name}" if count else "" for count, name in zip(counts, names)
+        ]
+        print(col1.rjust(margin), col2.center(len(cells)), col3.ljust(margin))
 
 
 def points(ys, width=None):
-    '''Usage:
+    """
+    Usage:
     import scipy.stats
     def walk(steps, position=0):
         for step in steps:
@@ -67,7 +69,7 @@ def points(ys, width=None):
             yield position
     positions = list(walk(scipy.stats.norm.rvs(size=1000)))
     points(positions)
-    '''
+    """
     if width is None:
         width = terminal.width()
 
@@ -89,6 +91,6 @@ def points(ys, width=None):
     bin_chars = (bin_heights * (len(terminal.bars) - 1)).astype(int)
     # print sums, counts, bin_means
     cells = [terminal.bars[bin_char] for bin_char in bin_chars]
-    print('[%+f]' % y_max)
-    print(''.join(cells))
-    print('[%+f]' % y_min)
+    print("[%+f]" % y_max)
+    print("".join(cells))
+    print("[%+f]" % y_min)

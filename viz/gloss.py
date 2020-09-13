@@ -1,17 +1,25 @@
 from . import terminal
 
 
-def gloss(alignments, prefixes=None, postfixes=None, width=None, toksep=' ', linesep='\n', groupsep='\n'):
-    '''
+def gloss(
+    alignments,
+    prefixes=None,
+    postfixes=None,
+    width=None,
+    toksep=" ",
+    linesep="\n",
+    groupsep="\n",
+):
+    """
     Creates an interlinear gloss (for pairs of tokens/types, POS-tags, labels, etc.)
 
-    Take a list of [('a', 'DET'), ('beluga', 'N')] and return a string covering multiples lines, like:
+    Take a list of [("a", "DET"), ("beluga", "N")] and return a string covering multiples lines, like:
         a   beluga
         DET N
     each item in `alignments` should have the same length, N
     `prefixes`, if provided, should be N-long
     `postfixes`, if provided, should be N-long
-    '''
+    """
     if width is None:
         width = terminal.width()
     toksep_len = len(toksep)
